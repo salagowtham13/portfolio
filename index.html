@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sala Gowtham | Systems & C++ Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --card-bg: #111827;
+      --card-border: #1f293d;
+      --accent-cyan: #00f2fe;
+      --accent-blue: #4facfe;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --font-code: 'Fira Code', monospace;
+      --font-sans: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    header {
+      padding: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .logo {
+      font-family: var(--font-code);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--accent-cyan);
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent-cyan);
+    }
+
+    .hero {
+      padding: 5rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--font-code);
+      background: rgba(0, 242, 254, 0.1);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-btn-group {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.8rem 1.6rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(0, 242, 254, 0.2);
+    }
+
+    .avatar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 250px;
+      background: linear-gradient(135deg, #1f293d, #090d16);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-code);
+      color: var(--accent-cyan);
+      margin-bottom: 1rem;
+      border: 1px dashed var(--card-border);
+    }
+
+    .location {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    section {
+      padding: 4rem 0;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .section-title::before {
+      content: '//';
+      font-family: var(--font-code);
+      color: var(--accent-cyan);
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .roadmap-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .roadmap-card.active {
+      border-color: var(--accent-cyan);
+    }
+
+    .step-num {
+      font-family: var(--font-code);
+      color: var(--accent-cyan);
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .roadmap-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .roadmap-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .tracker-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .metric {
+      border-left: 3px solid var(--accent-cyan);
+      padding-left: 1rem;
+    }
+
+    .metric-val {
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: var(--font-code);
+      color: var(--accent-cyan);
+    }
+
+    .metric-label {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 2rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .tracker-card {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">&lt;SalaGowtham /&gt;</div>
+      <nav>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#tracker">Tracker</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="badge">BUILDING IN PUBLIC</div>
+        <h1>Hi, I'm <span>Sala Gowtham</span></h1>
+        <p>CSE Student at Anil Neerukonda Institute of Technology and Sciences (ANITS), Visakhapatnam. Focused on mastering C, C++, and Data Structures & Algorithms from the ground up.</p>
+        <div class="hero-btn-group">
+          <a href="https://www.linkedin.com/in/sala-gowtham-1162a7343" target="_blank" class="btn btn-primary">Connect on LinkedIn</a>
+          <a href="mailto:salagowtham13@gmail.com" class="btn btn-secondary">Send Email</a>
+        </div>
+      </div>
+      <div class="avatar-card">
+        <div class="avatar-img">[ Photo Placeholder ]</div>
+        <h3>Sala Gowtham</h3>
+        <p class="location">📍 Visakhapatnam, India</p>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2 class="section-title">Learning Roadmap</h2>
+      <div class="roadmap-grid">
+        <div class="roadmap-card active">
+          <div class="step-num">STAGE 01 // CURRENT FOCUS</div>
+          <h3>C & Core Fundamentals</h3>
+          <p>Mastering memory management, pointers, dynamic memory allocation, and foundational low-level logic.</p>
+        </div>
+        <div class="roadmap-card">
+          <div class="step-num">STAGE 02 // UPCOMING</div>
+          <h3>Object-Oriented C++</h3>
+          <p>Learning Classes, Objects, Inheritance, Polymorphism, and leveraging the Standard Template Library (STL).</p>
+        </div>
+        <div class="roadmap-card">
+          <div class="step-num">STAGE 03 // UPCOMING</div>
+          <h3>DSA & Problem Solving</h3>
+          <p>Conquering core data structures (Trees, Graphs, Arrays) and dynamic programming algorithms on LeetCode.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="tracker">
+      <h2 class="section-title">Code Tracker & Milestones</h2>
+      <div class="tracker-card">
+        <div class="metric">
+          <div class="metric-val">0 / 100</div>
+          <div class="metric-label">LeetCode Problems Solved (Goal: 100)</div>
+        </div>
+        <div class="metric">
+          <div class="metric-val">C & C++</div>
+          <div class="metric-label">Primary Programming Stack</div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <p>© 2026 Sala Gowtham. Built with focus & dedication.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
